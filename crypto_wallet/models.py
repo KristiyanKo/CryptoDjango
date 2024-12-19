@@ -47,7 +47,8 @@ class Transaction(models.Model):
         return f"{self.transaction_type.capitalize()} {self.amount} {self.asset.symbol}"
 
     class Meta:
-        ordering = ['-timestamp']
+        ordering = ['-created_at']
+
 
 class PriceHistory(models.Model):
     asset = models.ForeignKey(CryptoAsset, on_delete=models.CASCADE, related_name="price_history")
