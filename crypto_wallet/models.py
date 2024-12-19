@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -35,16 +34,11 @@ class Wallet(models.Model):
         ordering = ['-created_at']
 
 class Transaction(models.Model):
-    TRANSACTION_TYPES = [
-        ('buy', 'Buy'),
-        ('sell', 'Sell')
-    ]
-
-    wallet = models.ForeignKey(Wallet, on_delete=models.CASCADE, related_name="transactions")
-    asset = models.ForeignKey(CryptoAsset, on_delete=models.CASCADE, related_name="transactions")
+    wallet = models.ForeignKey('Wallet', on_delete=models.CASCADE, related_name='transactions')
+    asset = models.ForeignKey('CryptoAsset', on_delete=models.CASCADE, related_name='transactions')
     amount = models.FloatField()
-    transaction_type = models.CharField(max_length=10, choices=TRANSACTION_TYPES)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    transaction_type = models.CharField(max_length=10, choices=[('buy', 'Buy'), ('sell', 'Sell')])
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def total_value(self):
         return self.amount * self.asset.price

@@ -13,8 +13,8 @@ class WalletAdmin(admin.ModelAdmin):
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ("id", "wallet", "amount", "created_at")  # Ensure created_at exists in the model
-    list_filter = ("created_at", "wallet")  # Ensure created_at is valid
+    list_display = ("id", "wallet", "amount", "created_at")
+    list_filter = ("created_at", "wallet")
     search_fields = ("wallet__owner__username",)
 
 
