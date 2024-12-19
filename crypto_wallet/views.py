@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect, Http404
 from django import forms
 from django.urls import reverse
 from django.views.generic import TemplateView
+from .models import Notification
+from .forms import NotificationForm
 
 class WalletListView(LoginRequiredMixin, ListView):
     model = Wallet
@@ -117,3 +119,38 @@ def dashboard(request):
 class DashboardView(TemplateView):
     template_name = 'dashboard.html'
     extra_context = {'title': 'Dashboard'}
+
+class NotificationListView(LoginRequiredMixin, ListView):
+    model = Notification
+    template_name = "notification_list.html"
+    context_object_name = "notifications"
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+class NotificationCreateView(LoginRequiredMixin, CreateView):
+    model = Notification
+    form_class = NotificationForm
+    template_name = "notification_form.html"
+    success_url = "/notifications/"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+class NotificationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Notification
+    form_class = NotificationForm
+    template_name = "notification_form.html"
+    success_url = "/notifications/"
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+class NotificationDeleteView(LoginRequiredMixin, DeleteView):
+    model = Notification
+    template_name = "notification_confirm_delete.html"
+    success_url = "/notifications/"
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)

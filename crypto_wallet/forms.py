@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Wallet, Transaction, CryptoAsset
+from .models import Wallet, Transaction, CryptoAsset, Notification
 
 
 class WalletForm(forms.ModelForm):
@@ -19,3 +19,8 @@ class CryptoAssetForm(forms.ModelForm):
     class Meta:
         model = CryptoAsset
         fields = ["name", "symbol", "price"]
+
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
+        fields = ["title", "message"]
