@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, Http404
 from django import forms
 from django.urls import reverse
+from django.views.generic import TemplateView
 
 class WalletListView(LoginRequiredMixin, ListView):
     model = Wallet
@@ -109,3 +110,10 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, label="Your Name")
     email = forms.EmailField(label="Your Email")
     message = forms.CharField(widget=forms.Textarea, label="Message")
+
+def dashboard(request):
+    return render(request, 'dashboard.html', {'title': 'Dashboard'})
+
+class DashboardView(TemplateView):
+    template_name = 'dashboard.html'
+    extra_context = {'title': 'Dashboard'}

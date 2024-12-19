@@ -2,7 +2,8 @@ from django.urls import path
 from .views import (
     WalletListView, WalletDetailView, WalletCreateView,
     WalletUpdateView, WalletDeleteView, CryptoAssetListView,
-    TransactionListView, home, about, contact, crypto_asset_detail
+    TransactionListView, home, about, contact, crypto_asset_detail,
+    DashboardView
 )
 
 app_name = 'crypto_wallet'
@@ -12,6 +13,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
+    path('dashboard/', DashboardView.as_view(), name='dashboard'),
 
     # Wallet Views
     path('wallets/', WalletListView.as_view(), name='wallet-list'),
@@ -25,5 +27,6 @@ urlpatterns = [
     path('crypto-assets/<int:pk>/', crypto_asset_detail, name='crypto-asset-detail'),
 
     # Transaction Views
-    path('transactions/', TransactionListView.as_view(), name='transaction-list'),
+    path('transactions/', TransactionListView.as_view(), name='transaction-list')
+
 ]
