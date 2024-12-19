@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Price History</h2>
+<a href="{% url 'price-history-create' %}" class="btn btn-success">Add New Price</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Asset</th>
+            <th>Price</th>
+            <th>Timestamp</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for history in price_histories %}
+        <tr>
+            <td>{{ history.asset }}</td>
+            <td>{{ history.price }}</td>
+            <td>{{ history.timestamp }}</td>
+            <td>
+                <a href="{% url 'price-history-update' history.id %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'price-history-delete' history.id %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
