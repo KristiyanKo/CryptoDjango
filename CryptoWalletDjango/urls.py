@@ -1,30 +1,14 @@
 from django.contrib import admin
-from django.urls import path
-from crypto_wallet.views import (
-    WalletListView, WalletDetailView, WalletCreateView,
-    WalletUpdateView, WalletDeleteView, CryptoAssetListView,
-    TransactionListView, home, about, contact, crypto_asset_detail
-)
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # Public Pages
-    path('', home, name='home'),
-    path('about/', about, name='about'),
-    path('contact/', contact, name='contact'),
-
-    # Wallet Views
-    path('wallets/', WalletListView.as_view(), name='wallet-list'),
-    path('wallets/<int:pk>/', WalletDetailView.as_view(), name='wallet-detail'),
-    path('wallets/create/', WalletCreateView.as_view(), name='wallet-create'),
-    path('wallets/<int:pk>/update/', WalletUpdateView.as_view(), name='wallet-update'),
-    path('wallets/<int:pk>/delete/', WalletDeleteView.as_view(), name='wallet-delete'),
-
-    # Crypto Asset Views
-    path('crypto-assets/', CryptoAssetListView.as_view(), name='crypto-asset-list'),
-    path('crypto-assets/<int:pk>/', crypto_asset_detail, name='crypto-asset-detail'),
-
-    # Transaction Views
-    path('transactions/', TransactionListView.as_view(), name='transaction-list'),
+    path('', include('crypto_wallet.urls')),  # Turn on the app routes
 ]
+
+# Adding static and media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
