@@ -7,6 +7,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, Http404
 from django import forms
 from django.urls import reverse
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html', {'title': 'Dashboard'})
+
 
 class WalletListView(LoginRequiredMixin, ListView):
     model = Wallet
@@ -109,3 +116,7 @@ class ContactForm(forms.Form):
     name = forms.CharField(max_length=100, label="Your Name")
     email = forms.EmailField(label="Your Email")
     message = forms.CharField(widget=forms.Textarea, label="Message")
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html', {'title': 'Dashboard'})
