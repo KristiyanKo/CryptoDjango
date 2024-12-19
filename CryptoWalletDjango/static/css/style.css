@@ -25,12 +25,3 @@ h2 {
     background-color: #007bff;
     border-color: #007bff;
 }
-
-.navbar-nav .nav-item .nav-link {
-    color: white;
-    margin-right: 10px;
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-    color: #FFD700;
-}

@@ -1,4 +1,15 @@
+{% extends 'base.html' %}
 
+{% block title %}Wallet Confirm Delete{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+{% extends 'base.html' %}
+
+{% block title %}Wallet_confirm_delete{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5">
@@ -9,5 +20,9 @@
         <button type="submit" class="btn btn-danger">Delete</button>
         <a href="{% url 'wallet-list' %}" class="btn btn-secondary">Cancel</a>
     </form>
+</div>
+{% endblock %}
+</div>
+{% endblock %}
 </div>
 {% endblock %}

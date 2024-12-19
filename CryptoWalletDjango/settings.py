@@ -73,3 +73,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Use Whitenoise for serving static files in production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
