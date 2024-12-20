@@ -154,3 +154,6 @@ class NotificationDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
+
+def user_profile(request):
+    return render(request, 'user_profile.html', {'title': 'User Profile'})  #11:47

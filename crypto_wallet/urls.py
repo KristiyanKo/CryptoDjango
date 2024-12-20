@@ -4,7 +4,7 @@ from .views import (
     WalletUpdateView, WalletDeleteView, CryptoAssetListView,
     TransactionListView, home, about, contact, crypto_asset_detail,
     DashboardView, NotificationListView, NotificationCreateView,
-    NotificationUpdateView, NotificationDeleteView
+    NotificationUpdateView, NotificationDeleteView, user_profile
 )
 
 app_name = 'crypto_wallet'
@@ -15,6 +15,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('profile/', user_profile, name='user-profile'), #11:47
 
     # Wallet Views
     path('wallets/', WalletListView.as_view(), name='wallet-list'),

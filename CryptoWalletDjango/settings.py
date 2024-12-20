@@ -28,7 +28,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'crypto_wallet.urls'
+ROOT_URLCONF = 'CryptoWalletDjango.urls'
 
 TEMPLATES = [
     {
