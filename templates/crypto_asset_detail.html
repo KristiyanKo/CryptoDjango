@@ -4,24 +4,8 @@
 
 {% block content %}
 <div class="container mt-5">
-{% extends 'base.html' %}
-
-{% block title %}Crypto_asset_detail{% endblock %}
-
-{% block content %}
-<div class="container mt-5">
-#TODO
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Crypto Asset Detail</title>
-</head>
-<body>
     <h1>{{ asset.name }} ({{ asset.symbol }})</h1>
     <p>Price: {{ asset.price }}</p>
-</body>
-</html>
-</div>
-{% endblock %}
+    <p>Description: {{ asset.description }}</p>
 </div>
 {% endblock %}

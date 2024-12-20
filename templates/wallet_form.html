@@ -4,26 +4,14 @@
 
 {% block content %}
 <div class="container mt-5">
-{% extends 'base.html' %}
-
-{% block title %}Wallet_form{% endblock %}
-
-{% block content %}
-<div class="container mt-5">
-{% extends 'base.html' %}
-{% block content %}
-<div class="container mt-5">
-    <h1 class="text-center">Create/Update Wallet</h1>
-    <form method="post" class="form">
+    <h1 class="text-center">{% if wallet %}Update Wallet{% else %}Create Wallet{% endif %}</h1>
+    <form method="post" class="form" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-3">
-            {{ form.as_p }}
+        {{ form.as_p }}
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{% url 'wallet_list' %}" class="btn btn-secondary">Cancel</a>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
     </form>
-</div>
-{% endblock %}
-</div>
-{% endblock %}
 </div>
 {% endblock %}

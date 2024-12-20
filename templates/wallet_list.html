@@ -4,21 +4,13 @@
 
 {% block content %}
 <div class="container mt-5">
-{% extends 'base.html' %}
-
-{% block title %}Wallet_list{% endblock %}
-
-{% block content %}
-<div class="container mt-5">
-{% extends 'base.html' %}
-{% block content %}
-<div class="container mt-5">
     <h1 class="text-center">Wallets</h1>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th>Owner</th>
                 <th>Balance</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -26,13 +18,21 @@
             <tr>
                 <td>{{ wallet.owner }}</td>
                 <td>{{ wallet.balance }}</td>
+                <td>
+                    <a href="{% url 'wallet_detail' wallet.id %}" class="btn btn-info btn-sm">View</a>
+                    <a href="{% url 'wallet_edit' wallet.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'wallet_delete' wallet.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">No wallets found.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-</div>
-{% endblock %}
-</div>
-{% endblock %}
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'wallet_create' %}" class="btn btn-success">Add New Wallet</a>
+    </div>
 </div>
 {% endblock %}

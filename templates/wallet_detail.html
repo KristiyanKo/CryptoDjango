@@ -4,25 +4,12 @@
 
 {% block content %}
 <div class="container mt-5">
-{% extends 'base.html' %}
-
-{% block title %}Wallet_detail{% endblock %}
-
-{% block content %}
-<div class="container mt-5">
-{% extends 'base.html' %}
-{% block content %}
-<div class="container mt-5">
     <h1 class="text-center">Wallet Details</h1>
-    <div class="card">
+    <div class="card mx-auto" style="max-width: 500px;">
         <div class="card-body">
             <h5 class="card-title">Owner: {{ wallet.owner }}</h5>
             <p class="card-text">Balance: {{ wallet.balance }}</p>
         </div>
     </div>
-</div>
-{% endblock %}
-</div>
-{% endblock %}
 </div>
 {% endblock %}

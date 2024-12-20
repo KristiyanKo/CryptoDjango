@@ -5,10 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('crypto_wallet.urls')),  # Turn on the app routes
+    path('', include(('crypto_wallet.urls', 'crypto_wallet'), namespace='crypto_wallet')),
 ]
 
-# Adding static and media files during development
+# Добавяне на static и media файлове по време на разработка
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
