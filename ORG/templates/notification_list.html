@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Notifications</h2>
+<ul>
+    {% for notification in notifications %}
+        <li>
+            <strong>{{ notification.title }}</strong> - {{ notification.message }}
+            <a href="{% url 'notification-update' notification.id %}">Edit</a> |
+            <a href="{% url 'notification-delete' notification.id %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'notification-create' %}">Create New Notification</a>
+{% endblock %}

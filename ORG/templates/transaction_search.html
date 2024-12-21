@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Transaction Search{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Transaction Search Results</h1>
+    <form method="get" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="query" class="form-control" placeholder="Search transactions..." value="{{ request.GET.query }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Wallet</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.wallet.owner }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.created_at }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">No transactions found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
